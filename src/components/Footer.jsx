@@ -76,7 +76,7 @@ const Footer = () => {
           {/* Footer Right: Social Media Links */}
           <HStack spacing={6} mt={{ base: 4, md: 0 }}>
             <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/profile.php?id=100094554292018"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -92,7 +92,7 @@ const Footer = () => {
               {/* Twitter Brand Color */}
             </a>
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/eme.whin?igsh=bnZyYWQ3a3FnZ2pz"
               target="_blank"
               rel="noopener noreferrer"
             >
