@@ -21,7 +21,7 @@ import throttle from "lodash.throttle"; // Add this if not already installed: np
 
 const Work = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "#f0f0f0", dark: "#0a192f" };
+  const bgColor = { light: "white", dark: "#0a192f" };
   const textColor = { light: "gray.800", dark: "gray.300" };
   const shadowColor = { light: "gray.300", dark: "#040c16" };
   const subTextColor = { light: "gray.500", dark: "#8892b0" };
