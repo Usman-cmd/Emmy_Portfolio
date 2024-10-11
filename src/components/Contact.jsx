@@ -92,7 +92,7 @@ const Contact = () => {
             />
             <IconButton
               as="a"
-              href="https://instagram.com"
+              href="https://www.instagram.com/eme.whin?igsh=bnZyYWQ3a3FnZ2pz"
               aria-label="Instagram"
               icon={<FaInstagram color="#E4405F" />}
               fontSize="2xl"
@@ -105,7 +105,7 @@ const Contact = () => {
             />
             <IconButton
               as="a"
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/profile.php?id=100094554292018"
               aria-label="Facebook"
               icon={<FaFacebook color="#1877F2" />}
               fontSize="2xl"
