@@ -100,7 +100,7 @@ const Footer = () => {
               {/* Instagram Brand Color */}
             </a>
             <a
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/in/emelineharty123/"
               target="_blank"
               rel="noopener noreferrer"
             >
