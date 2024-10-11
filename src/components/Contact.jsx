@@ -23,7 +23,7 @@ import {
 
 const Contact = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "#fafafa", dark: "#0a192f" }; // Match About page bg color
+  const bgColor = { light: "white", dark: "#0a192f" }; // Match About page bg color
   const headingColor = { light: "blue.600", dark: "white" }; // Consistent heading style
   const subTextColor = { light: "gray.500", dark: "#8892b0" };
   const inputBgColor = { light: "#e2e8f0", dark: "#ccd6f6" };
