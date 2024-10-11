@@ -17,7 +17,7 @@ import exhibitionImage from "../assets/exhibition/Exhibition.png"; // Replace wi
 
 const Exhibition = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "#fafafa", dark: "#0a192f" }; // Softer background for contrast
+  const bgColor = { light: "white", dark: "#0a192f" }; // Softer background for contrast
   const headingColor = { light: "blue.600", dark: "white" }; // Highlighted headings
   const textColor = { light: "gray.800", dark: "gray.300" };
   const subTextColor = { light: "gray.500", dark: "#8892b0" };
