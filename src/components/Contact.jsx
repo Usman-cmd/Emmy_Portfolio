@@ -79,7 +79,7 @@ const Contact = () => {
             />
             <IconButton
               as="a"
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/emelineharty123/"
               aria-label="LinkedIn"
               icon={<FaLinkedin color="#0077B5" />}
               fontSize="2xl"
