@@ -24,7 +24,7 @@ import {
 const Contact = () => {
   const { colorMode } = useColorMode();
   const lightGradient =
-    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+    "linear-gradient(to right, rgb(255,192,203), rgb(255, 221, 225))";
   const darkGradient =
     "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   const bgColor = { light: lightGradient, dark: darkGradient }; // Match About page bg color
@@ -51,6 +51,7 @@ const Contact = () => {
               fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
               fontWeight="bold"
               color={headingColor[colorMode]}
+              fontFamily={"Baskerville Old Face"}
               mr={4} // Add some margin to the right for spacing
             >
               Get In Touch
@@ -61,6 +62,7 @@ const Contact = () => {
             color={subTextColor[colorMode]}
             maxW="800px"
             mb={6}
+            fontFamily={"Baskerville Old Face"}
           >
             Whether you want to discuss a project, ask questions, or just say
             hi, I’d love to hear from you! You can reach me through the form
@@ -122,10 +124,15 @@ const Contact = () => {
             <Text
               fontSize={{ base: "md", sm: "lg" }}
               color={subTextColor[colorMode]}
+              fontFamily={"Baskerville Old Face"}
               maxW="800px"
             >
               Submit the form below or shoot me an email at{" "}
-              <Text as="span" fontWeight="bold">
+              <Text
+                as="span"
+                fontWeight="bold"
+                fontFamily={"Baskerville Old Face"}
+              >
                 emelinemharty@gmail.com
               </Text>
             </Text>
@@ -142,6 +149,7 @@ const Contact = () => {
                 <Input
                   bg={inputBgColor[colorMode]}
                   color={inputTextColor[colorMode]}
+                  fontFamily={"Baskerville Old Face"}
                   placeholder="Your Name"
                   name="name"
                   mb={4}
@@ -150,6 +158,7 @@ const Contact = () => {
                 <Input
                   bg={inputBgColor[colorMode]}
                   color={inputTextColor[colorMode]}
+                  fontFamily={"Baskerville Old Face"}
                   placeholder="Your Email"
                   type="email"
                   name="email"
@@ -159,6 +168,7 @@ const Contact = () => {
                 <Textarea
                   bg={inputBgColor[colorMode]}
                   color={inputTextColor[colorMode]}
+                  fontFamily={"Baskerville Old Face"}
                   placeholder="Your Message"
                   name="message"
                   rows={6}
@@ -174,6 +184,7 @@ const Contact = () => {
                   px={8}
                   py={3}
                   mx="auto"
+                  fontFamily={"Baskerville Old Face"}
                   _hover={{
                     bg: "pink.600",
                     color: "white",

@@ -35,7 +35,7 @@ const ProjectDetail = () => {
     []
   );
   const lightGradient =
-    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+    "linear-gradient(to right, rgb(255,192,203), rgb(255, 221, 225))";
   const darkGradient =
     "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -18,7 +18,7 @@ import exhibitionImage from "../assets/exhibition/Exhibition.png"; // Replace wi
 const Exhibition = () => {
   const { colorMode } = useColorMode();
   const lightGradient =
-    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+    "linear-gradient(to right, rgb(255,192,203), rgb(255, 221, 225))";
   const darkGradient =
     "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   const bgColor = { light: lightGradient, dark: darkGradient }; // Softer background for contrast
@@ -49,6 +49,7 @@ const Exhibition = () => {
             fontWeight="bold"
             color={headingColor[colorMode]}
             mb={4}
+            fontFamily={"Baskerville Old Face"}
           >
             Utah Queer Spectra Art Festival{" "}
           </Heading>
@@ -59,6 +60,7 @@ const Exhibition = () => {
             color={subTextColor[colorMode]}
             maxW="800px"
             mb={6}
+            fontFamily={"Baskerville Old Face"}
           >
             The Utah Queer Spectra Art Festival is an annual event celebrating
             LGBTQ+ art and culture in Utah. It typically features a diverse

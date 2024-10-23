@@ -17,7 +17,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 const Work = () => {
   const { colorMode } = useColorMode();
   const lightGradient =
-    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+    "linear-gradient(to right, rgb(255,192,203), rgb(255, 221, 225))";
   const darkGradient =
     "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   const bgColor = { light: lightGradient, dark: darkGradient };
@@ -49,8 +49,9 @@ const Work = () => {
         {/* Heading */}
         <Text
           //color="#590d22"
+          fontFamily={"Baskerville Old Face"}
           fontWeight="bold"
-          fontSize={{ base: "lg", sm: "xl" }}
+          fontSize={{ base: "2xl", sm: "4xl" }}
         >
           Hi, my name is
         </Text>
@@ -59,6 +60,7 @@ const Work = () => {
           fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "7xl" }}
           fontWeight="bold"
           color={headingColor[colorMode]}
+          fontFamily={"Baskerville Old Face"}
           mb={2}
         >
           Emmy
@@ -69,6 +71,7 @@ const Work = () => {
           color={subTextColor[colorMode]}
           maxW="700px"
           mb={4}
+          fontFamily={"Baskerville Old Face"}
         >
           I'm an Artist and I’m thrilled to share my creative journey with you.
         </Text>
@@ -133,6 +136,7 @@ const MemoizedThumbnail = React.memo(({ item, onClick }) => (
         color="white"
         textAlign="center"
         textShadow="0 2px 4px rgba(0, 0, 0, 0.8)"
+        fontFamily={"Baskerville Old Face"}
       >
         {item.name}
       </Heading>

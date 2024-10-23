@@ -88,7 +88,7 @@ const Navbar = () => {
           >
             {["about", "work", "exhibition", "contact"].map((section) => (
               <RouterLink key={section} to={`/${section}`}>
-                <Text {...navButtonStyle}>
+                <Text {...navButtonStyle} fontFamily={"Baskerville Old Face"}>
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </Text>
               </RouterLink>

@@ -41,11 +41,17 @@ const Footer = () => {
         >
           {/* Footer Left: Copyright */}
           <HStack spacing={4}>
-            <Text fontSize="lg" fontWeight="bold" color={textColor}>
+            <Text
+              fontSize="lg"
+              fontWeight="bold"
+              color={textColor}
+              fontFamily={"Baskerville Old Face"}
+            >
               © 2024 Emewhin
             </Text>
             <Text
               fontSize="sm"
+              fontFamily={"Baskerville Old Face"}
               color={colorMode === "light" ? "gray.500" : "gray.300"}
             >
               All Rights Reserved.
@@ -62,6 +68,7 @@ const Footer = () => {
             {["Privacy", "Terms", "Contact"].map((link) => (
               <RouterLink key={link} to={`/${link.toLowerCase()}`}>
                 <Text
+                  fontFamily={"Baskerville Old Face"}
                   fontSize="lg"
                   fontWeight="bold"
                   color={textColor}

@@ -18,22 +18,15 @@ import profile from "../assets/profile/profile.jpg";
 
 const About = () => {
   const lightGradient =
-    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+    "linear-gradient(to right, rgb(255,192,203), rgb(255, 221, 225))";
   const darkGradient =
     "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   const { colorMode } = useColorMode();
 
   const bgColor = { light: lightGradient, dark: darkGradient }; // Softer background for contrast
-  <Box
-    bg={colorMode === "light" ? bgColor.light : bgColor.dark}
-    bgGradient={
-      colorMode === "light"
-        ? "linear(to right, rgb(238, 156, 167), rgb(255, 221, 225))"
-        : undefined
-    }
-  ></Box>;
+
   const headingColor = { light: "blue.700", dark: "white" }; // Highlighted headings
-  const textColor = { light: "gray.800", dark: "gray.300" };
+  const textColor = { light: "#590d22", dark: "white" };
   const subTextColor = { light: "#590d22", dark: "#8892b0" };
   const buttonBgColor = { light: "gray.800", dark: "whiteAlpha.200" };
   const buttonTextColor = { light: "white", dark: "white" };
@@ -85,8 +78,10 @@ const About = () => {
           {/* Introduction Section */}
           <Text
             //color="{ light: lightGradient, dark: darkGradient }"
+            fontSize={{ base: "4xl", sm: "5xl", md: "7xl" }}
             fontWeight="bold"
-            fontSize={{ base: "lg", sm: "xl" }}
+            fontFamily={"Baskerville Old Face"}
+            color={textColor[colorMode]}
           >
             Welcome, I'm Emmy!
           </Text>
@@ -96,6 +91,7 @@ const About = () => {
             fontWeight="bold"
             color={headingColor[colorMode]}
             mb={4}
+            fontFamily={"Baskerville Old Face"}
           >
             Artist and Creative Storyteller
           </Heading>
@@ -106,6 +102,7 @@ const About = () => {
             color={subTextColor[colorMode]}
             maxW="800px"
             mb={6}
+            fontFamily={"Baskerville Old Face"}
           >
             During my childhood on a military base, I was exposed to a dynamic
             environment that profoundly shaped my identity over the years.
@@ -120,6 +117,7 @@ const About = () => {
             color={subTextColor[colorMode]}
             maxW="800px"
             mb={6}
+            fontFamily={"Baskerville Old Face"}
           >
             Competing in Veterinary Science competitions sparked a deeper
             enthusiasm for the field. In my sophomore year, I joined the Science
@@ -135,6 +133,7 @@ const About = () => {
             color={subTextColor[colorMode]}
             maxW="800px"
             mb={6}
+            fontFamily={"Baskerville Old Face"}
           >
             As I pursued my passion for science, I also grappled with the biases
             surrounding my identity as a queer woman. I often felt out of place
@@ -168,6 +167,7 @@ const About = () => {
               justifyContent="center"
               alignItems="center"
               textAlign="center"
+              fontFamily={"Baskerville Old Face"}
             >
               View Work
               <span className="ml-3">
