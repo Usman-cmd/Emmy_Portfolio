@@ -31,12 +31,12 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const { colorMode } = useColorMode();
   const subTextColor = useMemo(
-    () => ({ light: "gray.500", dark: "#8892b0" }),
+    () => ({ light: "#590d22", dark: "#8892b0" }),
     []
   );
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const bgColor = useColorModeValue("white", "#0a192f");
+  const bgColor = useColorModeValue("#ffccd5", "#0a192f");
   const textColor = useColorModeValue("blue.600", "white");
   const [isEnlarged, setIsEnlarged] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(

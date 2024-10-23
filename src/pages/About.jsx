@@ -18,10 +18,10 @@ import profile from "../assets/profile/profile.jpg";
 
 const About = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "white", dark: "#0a192f" }; // Softer background for contrast
+  const bgColor = { light: "#ffccd5", dark: "#0a192f" }; // Softer background for contrast
   const headingColor = { light: "blue.600", dark: "white" }; // Highlighted headings
   const textColor = { light: "gray.800", dark: "gray.300" };
-  const subTextColor = { light: "gray.500", dark: "#8892b0" };
+  const subTextColor = { light: "#590d22", dark: "#8892b0" };
   const buttonBgColor = { light: "gray.800", dark: "whiteAlpha.200" };
   const buttonTextColor = { light: "white", dark: "white" };
   const buttonBorderColor = { light: "gray.800", dark: "white" };
@@ -70,7 +70,11 @@ const About = () => {
 
         <Flex flexDir="column" alignItems="center" textAlign="center">
           {/* Introduction Section */}
-          <Text color="pink.600" fontSize={{ base: "lg", sm: "xl" }}>
+          <Text
+            color="#590d22"
+            fontWeight="bold"
+            fontSize={{ base: "lg", sm: "xl" }}
+          >
             Welcome, I'm Emmy!
           </Text>
           <Heading

@@ -18,7 +18,7 @@ import { Link as RouterLink } from "react-router-dom";
 const Footer = () => {
   const { colorMode } = useColorMode();
   const textColor = useColorModeValue("blue.600", "white");
-  const bgColor = useColorModeValue("white", "#0a192f");
+  const bgColor = useColorModeValue("#ffccd5", "#0a192f");
   const borderColor = useColorModeValue("gray.200", "gray.700");
 
   return (

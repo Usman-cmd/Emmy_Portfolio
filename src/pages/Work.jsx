@@ -16,10 +16,10 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const Work = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "white", dark: "#0a192f" };
-  const textColor = { light: "gray.800", dark: "gray.300" };
+  const bgColor = { light: "#ffccd5", dark: "#0a192f" };
+  const textColor = { light: "#590d22", dark: "gray.300" };
   const headingColor = { light: "blue.600", dark: "white" };
-  const subTextColor = { light: "gray.500", dark: "#8892b0" };
+  const subTextColor = { light: "#590d22", dark: "#8892b0" };
 
   const navigate = useNavigate(); // Hook for navigation
 
@@ -43,7 +43,11 @@ const Work = () => {
     >
       <Container maxW="1000px" centerContent>
         {/* Heading */}
-        <Text color="pink.600" fontSize={{ base: "lg", sm: "xl" }}>
+        <Text
+          color="#590d22"
+          fontWeight="bold"
+          fontSize={{ base: "lg", sm: "xl" }}
+        >
           Hi, my name is
         </Text>
         <Heading

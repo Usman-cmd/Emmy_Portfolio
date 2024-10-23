@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <Box
-      bg={colorMode === "light" ? "white" : "#0a192f"}
+      bg={colorMode === "light" ? "#ffccd5" : "#0a192f"}
       py={4}
       w="100%"
       zIndex="10"
