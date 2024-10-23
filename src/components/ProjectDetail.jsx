@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useRef,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import {
   Box,
   Container,
@@ -23,92 +17,96 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
-import throttle from "lodash.throttle";
+import throttle from "lodash.throttle"; // Ensure you have lodash.throttle installed
 import { FiChevronLeft, FiChevronRight, FiMaximize2 } from "react-icons/fi";
-import { data } from "../data/data.js";
+import { data } from "../data/data.js"; // Assuming your data is imported from this file
 
 const ProjectDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Get the image ID from the route parameters
   const { colorMode } = useColorMode();
-  const subTextColor = useMemo(
-    () => ({ light: "gray.500", dark: "#8892b0" }),
-    []
-  );
+  const subTextColor = { light: "gray.500", dark: "#8892b0" };
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure(); // Chakra UI modal hooks
   const bgColor = useColorModeValue("white", "#0a192f");
   const textColor = useColorModeValue("blue.600", "white");
   const [isEnlarged, setIsEnlarged] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(
-    parseInt(id, 10) || 0
+    parseInt(id, 10) || 0 // Set to 0 if id is not a valid number
   );
 
+  // Separate refs for the main and modal thumbnails
   const thumbnailContainerRef = useRef(null);
   const modalThumbnailContainerRef = useRef(null);
+
   const navigate = useNavigate();
 
-  // Memoized callback to update the selected image index and URL
-  const updateSelectedImageIndex = useCallback(
-    (index) => {
-      setSelectedImageIndex(index);
-      navigate(`/image/${index}`);
-    },
-    [navigate]
-  );
+  // Update the image index and URL
+  const updateSelectedImageIndex = (index) => {
+    setSelectedImageIndex(index);
+    navigate(`/image/${index}`); // Update the URL with the new image index
+  };
 
+  // Navigate to the previous image
   const showPreviousImage = useCallback(() => {
     const newIndex =
       selectedImageIndex === 0 ? data.length - 1 : selectedImageIndex - 1;
     updateSelectedImageIndex(newIndex);
-  }, [selectedImageIndex, updateSelectedImageIndex]);
+  }, [selectedImageIndex]);
 
+  // Navigate to the next image
   const showNextImage = useCallback(() => {
     const newIndex =
       selectedImageIndex === data.length - 1 ? 0 : selectedImageIndex + 1;
     updateSelectedImageIndex(newIndex);
-  }, [selectedImageIndex, updateSelectedImageIndex]);
+  }, [selectedImageIndex]);
 
   const toggleEnlargeImage = useCallback(() => {
-    setIsEnlarged((prevState) => !prevState);
-    onOpen();
-  }, [onOpen]);
+    setIsEnlarged(!isEnlarged);
+    onOpen(); // Open modal when enlarging
+  }, [isEnlarged, onOpen]);
 
-  const scrollThumbnailIntoView = useMemo(
-    () =>
-      throttle((index, ref) => {
-        if (!ref.current) return;
-        const thumbnail = ref.current.children[index];
-        const containerWidth = ref.current.offsetWidth;
-        const thumbnailWidth = thumbnail.offsetWidth;
-        const thumbnailOffsetLeft = thumbnail.offsetLeft;
+  const scrollThumbnailIntoView = useCallback(
+    throttle((index, ref) => {
+      if (!ref.current) return;
+      const thumbnail = ref.current.children[index];
+      const containerWidth = ref.current.offsetWidth;
+      const thumbnailWidth = thumbnail.offsetWidth;
+      const thumbnailOffsetLeft = thumbnail.offsetLeft;
 
-        ref.current.scrollTo({
-          left: thumbnailOffsetLeft - (containerWidth - thumbnailWidth) / 2,
-          behavior: "smooth",
-        });
-      }, 50), // Reduced delay for smoother interaction
+      // Scroll so the selected thumbnail starts near the beginning of the strip
+      ref.current.scrollTo({
+        left: thumbnailOffsetLeft - (containerWidth - thumbnailWidth) / 2,
+        behavior: "smooth",
+      });
+    }, 100),
     []
   );
 
+  // Scroll thumbnail into view when the selected image changes in the main view
   useEffect(() => {
     scrollThumbnailIntoView(selectedImageIndex, thumbnailContainerRef);
   }, [selectedImageIndex, scrollThumbnailIntoView]);
 
+  // Scroll thumbnail into view when the selected image changes in the modal view
   useEffect(() => {
     if (isOpen) {
       scrollThumbnailIntoView(selectedImageIndex, modalThumbnailContainerRef);
     }
   }, [selectedImageIndex, isOpen, scrollThumbnailIntoView]);
 
+  // Update the selected image index based on URL parameter
   useEffect(() => {
     const index = parseInt(id, 10);
     if (!isNaN(index) && index >= 0 && index < data.length) {
       setSelectedImageIndex(index);
     }
-  }, [id]);
+  }, [id]); // Run this effect when the id from the URL changes
 
+  // Add keyboard navigation for left and right arrow keys
   useEffect(() => {
     const handleKeyDown = (event) => {
+      //if (!isOpen) return; // Only handle keyboard events if modal is open
+
       if (event.key === "ArrowLeft") {
         showPreviousImage();
       } else if (event.key === "ArrowRight") {
@@ -118,14 +116,14 @@ const ProjectDetail = () => {
       }
     };
 
+    // Add event listener when the modal is open
     document.addEventListener("keydown", handleKeyDown);
+
+    // Cleanup event listener when the modal is closed
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, showPreviousImage, showNextImage, onClose]);
-
-  // Memoized list of data to prevent unnecessary recalculations
-  const imageData = useMemo(() => data, []);
 
   return (
     <Box
@@ -145,7 +143,7 @@ const ProjectDetail = () => {
           alignItems="center"
         >
           <Heading size="lg" fontWeight="bold" color={textColor}>
-            {imageData[selectedImageIndex]?.name}
+            {data[selectedImageIndex]?.name}
           </Heading>
         </Box>
 
@@ -173,11 +171,10 @@ const ProjectDetail = () => {
             position="relative"
           >
             <Image
-              src={imageData[selectedImageIndex]?.image}
+              src={data[selectedImageIndex]?.image} // Safely access the image
               alt="Art"
               h="100%"
               objectFit="contain"
-              loading="lazy"
             />
           </Box>
 
@@ -185,22 +182,25 @@ const ProjectDetail = () => {
             w={{ base: "full", md: "30%" }}
             pl={{ base: 0, md: 8 }}
             pt={{ base: 4, md: 0 }}
-            overflowY="auto"
-            h="400px"
+            overflowY="auto" // Enable vertical scrolling
+            h="400px" // Set a fixed height for the description area
             css={{
-              "&::-webkit-scrollbar": { width: "10px" },
+              /* Custom scrollbar styles */
+              "&::-webkit-scrollbar": {
+                width: "10px", // Width of the scrollbar
+              },
               "&::-webkit-scrollbar-track": {
-                background: colorMode === "light" ? "#f1f1f1" : "#1a202c",
-                borderRadius: "10px",
+                background: colorMode === "light" ? "#f1f1f1" : "#1a202c", // Track color
+                borderRadius: "10px", // Rounded scrollbar track
               },
               "&::-webkit-scrollbar-thumb": {
-                backgroundColor: colorMode === "light" ? "#a0aec0" : "#4A5568",
-                borderRadius: "10px",
-                border: "2px solid transparent",
-                backgroundClip: "content-box",
+                backgroundColor: colorMode === "light" ? "#a0aec0" : "#4A5568", // Thumb color
+                borderRadius: "10px", // Rounded scrollbar thumb
+                border: "2px solid transparent", // Border around the thumb
+                backgroundClip: "content-box", // Clip the background to show the border
               },
               "&::-webkit-scrollbar-thumb:hover": {
-                backgroundColor: colorMode === "light" ? "#718096" : "#2D3748",
+                backgroundColor: colorMode === "light" ? "#718096" : "#2D3748", // Thumb hover color
               },
             }}
           >
@@ -211,7 +211,7 @@ const ProjectDetail = () => {
               mb={6}
               mt={4}
             >
-              {imageData[selectedImageIndex]?.description}
+              {data[selectedImageIndex]?.description}
             </Text>
           </Box>
         </Flex>
@@ -227,7 +227,7 @@ const ProjectDetail = () => {
           <IconButton
             aria-label="Previous image"
             icon={<FiChevronLeft size="48px" />}
-            onClick={showPreviousImage}
+            onClick={showPreviousImage} // Only navigate
             bg="none"
             _hover={{ bg: "none", color: "pink.600" }}
             _focus={{ boxShadow: "none" }}
@@ -238,7 +238,7 @@ const ProjectDetail = () => {
           <IconButton
             aria-label="Next image"
             icon={<FiChevronRight size="48px" />}
-            onClick={showNextImage}
+            onClick={showNextImage} // Only navigate
             bg="none"
             _hover={{ bg: "none", color: "pink.600" }}
             _focus={{ boxShadow: "none" }}
@@ -248,6 +248,7 @@ const ProjectDetail = () => {
           />
         </Flex>
 
+        {/* Thumbnail section added here */}
         <Flex
           mt={4}
           overflowX="auto"
@@ -303,25 +304,19 @@ const ProjectDetail = () => {
 
         <Modal isOpen={isOpen} onClose={onClose} size="full">
           <ModalOverlay />
-          <ModalContent bg={bgColor} color={textColor}>
-            <ModalCloseButton _focus={{ boxShadow: "none" }} />
-            <ModalBody>
-              <Box
+          <ModalContent bg={colorMode === "light" ? "white" : "#0a192f"}>
+            <ModalCloseButton
+              size="lg"
+              color={colorMode === "light" ? "gray.800" : "white"}
+            />
+            <ModalBody p={1}>
+              <Image
+                src={data[selectedImageIndex]?.image}
+                alt="Enlarged art"
                 w="full"
-                h="full"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Image
-                  src={imageData[selectedImageIndex]?.image}
-                  alt="Enlarged Image"
-                  h="80vh"
-                  objectFit="contain"
-                  loading="lazy"
-                />
-              </Box>
-
+                h="80vh"
+                objectFit="contain"
+              />
               <Flex
                 mt={4}
                 overflowX="auto"
@@ -385,6 +380,35 @@ const ProjectDetail = () => {
                   />
                 ))}
               </Flex>
+
+              <IconButton
+                aria-label="Previous image"
+                icon={<FiChevronLeft size="48px" />}
+                onClick={showPreviousImage}
+                position="absolute"
+                top="40%"
+                left="15px"
+                transform="translateY(-50%)"
+                bg="none"
+                _hover={{ bg: "none", color: "pink.600" }}
+                _focus={{ boxShadow: "none" }}
+                color={colorMode === "light" ? "blue.600" : "white"}
+                size="lg"
+              />
+              <IconButton
+                aria-label="Next image"
+                icon={<FiChevronRight size="48px" />}
+                onClick={showNextImage}
+                position="absolute"
+                top="40%"
+                right="15px"
+                transform="translateY(-50%)"
+                bg="none"
+                _hover={{ bg: "none", color: "pink.600" }}
+                _focus={{ boxShadow: "none" }}
+                color={colorMode === "light" ? "blue.600" : "white"}
+                size="lg"
+              />
             </ModalBody>
           </ModalContent>
         </Modal>
