@@ -14,11 +14,15 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
+const lightGradient =
+  "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+const darkGradient =
+  "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
 
 const Footer = () => {
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("blue.600", "white");
-  const bgColor = useColorModeValue("#ffccd5", "#0a192f");
+  const textColor = useColorModeValue("blue.700", "white");
+  const bgColor = useColorModeValue(lightGradient, darkGradient);
   const borderColor = useColorModeValue("gray.200", "gray.700");
 
   return (
@@ -63,7 +67,7 @@ const Footer = () => {
                   color={textColor}
                   transition="color 0.3s ease, transform 0.3s ease"
                   _hover={{
-                    color: colorMode === "light" ? "blue.600" : "gray.300",
+                    color: colorMode === "light" ? "blue.700" : "gray.300",
                     transform: "scale(1.1)",
                   }}
                 >

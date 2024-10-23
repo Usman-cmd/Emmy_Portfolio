@@ -17,9 +17,22 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import profile from "../assets/profile/profile.jpg";
 
 const About = () => {
+  const lightGradient =
+    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+  const darkGradient =
+    "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   const { colorMode } = useColorMode();
-  const bgColor = { light: "#ffccd5", dark: "#0a192f" }; // Softer background for contrast
-  const headingColor = { light: "blue.600", dark: "white" }; // Highlighted headings
+
+  const bgColor = { light: lightGradient, dark: darkGradient }; // Softer background for contrast
+  <Box
+    bg={colorMode === "light" ? bgColor.light : bgColor.dark}
+    bgGradient={
+      colorMode === "light"
+        ? "linear(to right, rgb(238, 156, 167), rgb(255, 221, 225))"
+        : undefined
+    }
+  ></Box>;
+  const headingColor = { light: "blue.700", dark: "white" }; // Highlighted headings
   const textColor = { light: "gray.800", dark: "gray.300" };
   const subTextColor = { light: "#590d22", dark: "#8892b0" };
   const buttonBgColor = { light: "gray.800", dark: "whiteAlpha.200" };
@@ -53,7 +66,7 @@ const About = () => {
               objectFit="cover"
             />
             {/* Adding a decorative border using a pseudo element */}
-            <Box
+            {/* <Box
               position="absolute"
               top="0"
               left="0"
@@ -64,14 +77,14 @@ const About = () => {
               borderColor={colorMode === "light" ? "blue.600" : "pink.600"} // Gradient based on color mode
               boxShadow="0 0 20px rgba(255, 105, 135, 0.3)" // Subtle glow effect
               zIndex={1}
-            />
+            /> */}
           </Box>
         </Flex>
 
         <Flex flexDir="column" alignItems="center" textAlign="center">
           {/* Introduction Section */}
           <Text
-            color="#590d22"
+            //color="{ light: lightGradient, dark: darkGradient }"
             fontWeight="bold"
             fontSize={{ base: "lg", sm: "xl" }}
           >

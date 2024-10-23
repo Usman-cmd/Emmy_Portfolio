@@ -17,8 +17,12 @@ import exhibitionImage from "../assets/exhibition/Exhibition.png"; // Replace wi
 
 const Exhibition = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "#ffccd5", dark: "#0a192f" }; // Softer background for contrast
-  const headingColor = { light: "blue.600", dark: "white" }; // Highlighted headings
+  const lightGradient =
+    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+  const darkGradient =
+    "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
+  const bgColor = { light: lightGradient, dark: darkGradient }; // Softer background for contrast
+  const headingColor = { light: "blue.700", dark: "white" }; // Highlighted headings
   const textColor = { light: "gray.800", dark: "gray.300" };
   const subTextColor = { light: "#590d22", dark: "#8892b0" };
   const buttonBgColor = { light: "gray.800", dark: "whiteAlpha.200" };
@@ -74,7 +78,7 @@ const Exhibition = () => {
               src={exhibitionImage} // Replace with your actual exhibition image URL
               alt="Exhibition display"
               border="4px solid"
-              borderColor={{ light: "blue.600", dark: "pink.600" }[colorMode]}
+              borderColor={{ light: "blue.700", dark: "pink.600" }[colorMode]}
             />
           </Flex>
         </Flex>

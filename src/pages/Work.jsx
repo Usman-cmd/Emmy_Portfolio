@@ -16,9 +16,13 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const Work = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "#ffccd5", dark: "#0a192f" };
+  const lightGradient =
+    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+  const darkGradient =
+    "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
+  const bgColor = { light: lightGradient, dark: darkGradient };
   const textColor = { light: "#590d22", dark: "gray.300" };
-  const headingColor = { light: "blue.600", dark: "white" };
+  const headingColor = { light: "blue.700", dark: "white" };
   const subTextColor = { light: "#590d22", dark: "#8892b0" };
 
   const navigate = useNavigate(); // Hook for navigation
@@ -38,13 +42,13 @@ const Work = () => {
       w="full"
       minH="100vh"
       bg={bgColor[colorMode]}
-      color={colorMode === "light" ? "blue.500" : "white"}
+      color={colorMode === "light" ? "#590d22" : "white"}
       py={8}
     >
       <Container maxW="1000px" centerContent>
         {/* Heading */}
         <Text
-          color="#590d22"
+          //color="#590d22"
           fontWeight="bold"
           fontSize={{ base: "lg", sm: "xl" }}
         >

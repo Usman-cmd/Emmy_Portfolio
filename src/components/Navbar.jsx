@@ -18,7 +18,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const textColor = useColorModeValue("blue.600", "white");
+  const textColor = useColorModeValue("blue.700", "white");
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const navigate = useNavigate();
@@ -30,14 +30,17 @@ const Navbar = () => {
     cursor: "pointer",
     transition: "color 0.3s ease, transform 0.3s ease",
     _hover: {
-      color: colorMode === "light" ? "blue.600" : "gray.300",
+      color: colorMode === "light" ? "blue.700" : "gray.300",
       transform: "scale(1.1)",
     },
   };
-
+  const lightGradient =
+    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+  const darkGradient =
+    "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   return (
     <Box
-      bg={colorMode === "light" ? "#ffccd5" : "#0a192f"}
+      bg={colorMode === "light" ? lightGradient : darkGradient}
       py={4}
       w="100%"
       zIndex="10"

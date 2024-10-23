@@ -23,8 +23,12 @@ import {
 
 const Contact = () => {
   const { colorMode } = useColorMode();
-  const bgColor = { light: "#ffccd5", dark: "#0a192f" }; // Match About page bg color
-  const headingColor = { light: "blue.600", dark: "white" }; // Consistent heading style
+  const lightGradient =
+    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+  const darkGradient =
+    "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
+  const bgColor = { light: lightGradient, dark: darkGradient }; // Match About page bg color
+  const headingColor = { light: "blue.700", dark: "white" }; // Consistent heading style
   const subTextColor = { light: "#590d22", dark: "#8892b0" };
   const inputBgColor = { light: "#e2e8f0", dark: "#ccd6f6" };
   const inputTextColor = { light: "gray.800", dark: "gray.800" };

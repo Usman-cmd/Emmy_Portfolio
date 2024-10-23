@@ -34,10 +34,13 @@ const ProjectDetail = () => {
     () => ({ light: "#590d22", dark: "#8892b0" }),
     []
   );
-
+  const lightGradient =
+    "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
+  const darkGradient =
+    "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const bgColor = useColorModeValue("#ffccd5", "#0a192f");
-  const textColor = useColorModeValue("blue.600", "white");
+  const bgColor = useColorModeValue(lightGradient, darkGradient);
+  const textColor = useColorModeValue("blue.700", "white");
   const [isEnlarged, setIsEnlarged] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(
     parseInt(id, 10) || 0
@@ -158,7 +161,7 @@ const ProjectDetail = () => {
           bg="none"
           _hover={{ bg: "none", color: "pink.600" }}
           _focus={{ boxShadow: "none" }}
-          color={colorMode === "light" ? "blue.600" : "white"}
+          color={colorMode === "light" ? "blue.700" : "white"}
           size="lg"
           fontSize="38px"
         />
@@ -231,7 +234,7 @@ const ProjectDetail = () => {
             bg="none"
             _hover={{ bg: "none", color: "pink.600" }}
             _focus={{ boxShadow: "none" }}
-            color={colorMode === "light" ? "blue.600" : "white"}
+            color={colorMode === "light" ? "blue.700" : "white"}
             size="lg"
             fontSize="38px"
           />
@@ -242,7 +245,7 @@ const ProjectDetail = () => {
             bg="none"
             _hover={{ bg: "none", color: "pink.600" }}
             _focus={{ boxShadow: "none" }}
-            color={colorMode === "light" ? "blue.600" : "white"}
+            color={colorMode === "light" ? "blue.700" : "white"}
             size="lg"
             fontSize="38px"
           />
@@ -327,7 +330,7 @@ const ProjectDetail = () => {
                 overflowX="auto"
                 w="full"
                 py={1}
-                bg={colorMode === "light" ? "white" : "#0a192f"}
+                bg={colorMode === "light" ? lightGradient : darkGradient}
                 ref={modalThumbnailContainerRef}
                 css={{
                   /* Custom scrollbar styles */
@@ -392,7 +395,7 @@ const ProjectDetail = () => {
                 bg="none"
                 _hover={{ bg: "none", color: "pink.600" }}
                 _focus={{ boxShadow: "none" }}
-                color={colorMode === "light" ? "blue.600" : "white"}
+                color={colorMode === "light" ? "blue.700" : "white"}
                 size="lg"
               />
               <IconButton
@@ -406,7 +409,7 @@ const ProjectDetail = () => {
                 bg="none"
                 _hover={{ bg: "none", color: "pink.600" }}
                 _focus={{ boxShadow: "none" }}
-                color={colorMode === "light" ? "blue.600" : "white"}
+                color={colorMode === "light" ? "blue.700" : "white"}
                 size="lg"
               />
             </ModalBody>
