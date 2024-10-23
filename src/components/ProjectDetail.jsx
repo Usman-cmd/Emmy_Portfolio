@@ -147,7 +147,12 @@ const ProjectDetail = () => {
           display="flex"
           alignItems="center"
         >
-          <Heading size="lg" fontWeight="bold" color={textColor}>
+          <Heading
+            size="lg"
+            fontWeight="bold"
+            color={textColor}
+            fontFamily={"Baskerville Old Face"}
+          >
             {imageData[selectedImageIndex]?.name}
           </Heading>
         </Box>
@@ -213,6 +218,7 @@ const ProjectDetail = () => {
               maxW="800px"
               mb={6}
               mt={4}
+              fontFamily={"Baskerville Old Face"}
             >
               {imageData[selectedImageIndex]?.description}
             </Text>
