@@ -9,6 +9,7 @@ import {
   Box,
   VStack,
   IconButton,
+  SlideFade,
 } from "@chakra-ui/react";
 import { IoMoon } from "react-icons/io5";
 import { LuSun } from "react-icons/lu";
@@ -38,6 +39,7 @@ const Navbar = () => {
     "linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225))";
   const darkGradient =
     "linear-gradient(109.6deg, rgb(6, 2, 2) 32.4%, rgb(137, 30, 47) 98.8%)";
+
   return (
     <Box
       bg={colorMode === "light" ? lightGradient : darkGradient}
@@ -128,6 +130,7 @@ const Navbar = () => {
         </Flex>
 
         {/* Mobile Menu */}
+
         {nav && (
           <VStack
             as="nav"
@@ -136,12 +139,13 @@ const Navbar = () => {
             left={0}
             w="full"
             h="100vh"
-            bg={colorMode === "light" ? "gray.200" : "gray.900"}
+            bg={colorMode === "light" ? lightGradient : darkGradient}
             justifyContent="center"
             alignItems="center"
             spacing={8}
             overflow="hidden"
             zIndex={20}
+            transition="all 0.4s ease"
           >
             <IconButton
               icon={<FaTimes />}
@@ -150,6 +154,10 @@ const Navbar = () => {
               size="lg"
               variant="outline"
               mb={4}
+              transition="transform 0.4s ease"
+              _hover={{
+                transform: "scale(1.2)",
+              }}
             />
             {["about", "work", "exhibition", "contact"].map((section) => (
               <RouterLink
@@ -157,7 +165,12 @@ const Navbar = () => {
                 to={`/${section}`}
                 onClick={handleClick}
               >
-                <Text {...navButtonStyle}>
+                <Text
+                  {...navButtonStyle}
+                  fontSize={{ base: "28px", md: "24px" }}
+                  fontFamily={"Baskerville Old Face"}
+                  _hover={{ transform: "scale(1.2)" }}
+                >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
                 </Text>
               </RouterLink>
