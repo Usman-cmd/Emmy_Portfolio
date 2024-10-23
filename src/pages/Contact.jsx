@@ -66,19 +66,6 @@ const Contact = () => {
           <HStack spacing={4}>
             <IconButton
               as="a"
-              href="https://twitter.com"
-              aria-label="Twitter"
-              icon={<FaTwitter color="#1DA1F2" />}
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-              _hover={{
-                transform: "scale(1.1)",
-                transition: "all 0.3s ease",
-              }} // Adds hover effect
-            />
-            <IconButton
-              as="a"
               href="https://www.linkedin.com/in/emelineharty123/"
               aria-label="LinkedIn"
               icon={<FaLinkedin color="#0077B5" />}

@@ -17,7 +17,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const Footer = () => {
   const { colorMode } = useColorMode();
-  const textColor = useColorModeValue("blue.500", "white");
+  const textColor = useColorModeValue("blue.600", "white");
   const bgColor = useColorModeValue("white", "#0a192f");
   const borderColor = useColorModeValue("gray.200", "gray.700");
 
@@ -82,14 +82,6 @@ const Footer = () => {
             >
               <FaFacebookF size={24} color="#1877F2" />{" "}
               {/* Facebook Brand Color */}
-            </a>
-            <a
-              href="https://www.twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaTwitter size={24} color="#1DA1F2" />{" "}
-              {/* Twitter Brand Color */}
             </a>
             <a
               href="https://www.instagram.com/eme.whin?igsh=bnZyYWQ3a3FnZ2pz"

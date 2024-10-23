@@ -1,11 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box, useColorModeValue } from "@chakra-ui/react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Navbar from "./components/Navbar";
-import About from "./components/About";
-import Work from "./components/Work";
-import Contact from "./components/Contact";
+import About from "./pages/About";
+import Work from "./pages/Work";
+import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
-import Exhibition from "./components/Exhibition";
+import Exhibition from "./pages/Exhibition";
+import ProjectDetail from "./components/ProjectDetail";
 
 function App() {
   return (
@@ -15,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/work" element={<Work />} />
         <Route path="/" element={<Work />} />
+        <Route path="/image/:id" element={<ProjectDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/exhibition" element={<Exhibition />} />
       </Routes>
