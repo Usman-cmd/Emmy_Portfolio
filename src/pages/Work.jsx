@@ -69,8 +69,9 @@ const Work = () => {
           fontSize={{ base: "2xl", sm: "4xl" }}
           fontWeight="bold"
           color={subTextColor[colorMode]}
-          maxW="700px"
+          maxW="540px"
           mb={4}
+          position={""}
           fontFamily={"Baskerville Old Face"}
         >
           I'm an Artist and I’m thrilled to share my creative journey with you.
