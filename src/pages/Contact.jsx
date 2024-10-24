@@ -21,6 +21,13 @@ import {
   FaFacebook,
 } from "react-icons/fa"; // Import social media icons
 
+// Importing necessary libraries for the form functionality
+import { useForm } from "react-hook-form";
+import { Toaster, toast } from "sonner";
+import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+import process from "process";
+
 const Contact = () => {
   const { colorMode } = useColorMode();
   const lightGradient =
@@ -31,7 +38,64 @@ const Contact = () => {
   const headingColor = { light: "blue.700", dark: "white" }; // Consistent heading style
   const subTextColor = { light: "#590d22", dark: "#8892b0" };
   const inputBgColor = { light: "#e2e8f0", dark: "#ccd6f6" };
-  const inputTextColor = { light: "gray.800", dark: "gray.800" };
+  const inputTextColor = { light: "black", dark: "black" };
+
+  //dotenv.config();
+
+  //require("dotenv").config();
+
+  // Form functionality from the previous code
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const sendEmail = (params) => {
+    const toastId = toast.loading("Sending your message, please wait...");
+    console.log(import.meta.env.VITE_PUBLIC_SERVICE_ID);
+
+    const serviceId = import.meta.env.VITE_PUBLIC_SERVICE_ID;
+    const templateId = import.meta.env.VITE_PUBLIC_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_PUBLIC_PUBLIC_KEY;
+
+    console.log("Service ID:", serviceId);
+    console.log("Template ID:", templateId);
+    console.log("Public Key:", publicKey);
+
+    emailjs
+      .send(serviceId, templateId, params, publicKey) // Only pass publicKey, not as an object
+      .then(
+        () => {
+          toast.success(
+            "I have received your message, I will get back to you soon!",
+            {
+              id: toastId,
+            }
+          );
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          toast.error(
+            "There was an error sending your message, please try again later!",
+            {
+              id: toastId,
+            }
+          );
+        }
+      );
+  };
+
+  const onSubmit = (data) => {
+    const templateParams = {
+      to_name: "Usman",
+      from_name: data.name,
+      reply_to: data.email,
+      message: data.message,
+    };
+
+    sendEmail(templateParams);
+  };
 
   return (
     <Box
@@ -118,7 +182,7 @@ const Contact = () => {
           alignItems="center"
           textAlign="center"
           w="full"
-          justify="center" // Center the form vertically
+          justify="center"
         >
           <Box pb={8}>
             <Text
@@ -138,64 +202,211 @@ const Contact = () => {
             </Text>
           </Box>
 
-          {/* Form */}
-          <Flex w="full" justify="center" px={4}>
-            <form
-              method="POST"
-              action="https://getform.io/f/95a395b5-e421-4da9-bde7-0ea7717032ca"
-              style={{ width: "100%" }}
-            >
-              <Flex flexDir="column" w="full" maxW="600px" mx="auto">
-                <Input
-                  bg={inputBgColor[colorMode]}
-                  color={inputTextColor[colorMode]}
-                  fontFamily={"Baskerville Old Face"}
-                  placeholder="Your Name"
-                  name="name"
-                  mb={4}
-                  p={2}
-                />
-                <Input
-                  bg={inputBgColor[colorMode]}
-                  color={inputTextColor[colorMode]}
-                  fontFamily={"Baskerville Old Face"}
-                  placeholder="Your Email"
-                  type="email"
-                  name="email"
-                  mb={4}
-                  p={2}
-                />
-                <Textarea
-                  bg={inputBgColor[colorMode]}
-                  color={inputTextColor[colorMode]}
-                  fontFamily={"Baskerville Old Face"}
-                  placeholder="Your Message"
-                  name="message"
-                  rows={6}
-                  mb={4}
-                  p={2}
-                />
-
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  colorScheme="pink"
-                  variant="outline"
-                  px={8}
-                  py={3}
-                  mx="auto"
-                  fontFamily={"Baskerville Old Face"}
-                  _hover={{
-                    bg: "pink.600",
-                    color: "white",
-                    borderColor: "pink.600",
+          {/* New form functionality added here */}
+          <Toaster richColors={true} />
+          <motion.form
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: { staggerChildren: 0.3, delayChildren: 0.2 },
+              },
+            }}
+            initial="hidden"
+            animate="show"
+            onSubmit={handleSubmit(onSubmit)}
+            //method="POST"
+            //action="https://getform.io/f/95a395b5-e421-4da9-bde7-0ea7717032ca"
+            style={{ width: "100%" }} // Keeping the existing design's full width
+          >
+            <Flex flexDir="column" w="full" maxW="600px" mx="auto">
+              {/* Name Input */}
+              <>
+                <style>
+                  {`
+                    input::placeholder, textarea::placeholder {
+                    color: #7393B3; /* Placeholder color */
+                          } 
+                `}
+                </style>
+                <motion.input
+                  variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+                  type="text"
+                  placeholder="name"
+                  {...register("name", {
+                    required: "This field is required!",
+                    minLength: {
+                      value: 3,
+                      message: "Name should be at least 3 characters long.",
+                    },
+                  })}
+                  className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+                  style={{
+                    backgroundColor: inputBgColor[colorMode],
+                    color: inputTextColor[colorMode],
+                    padding: "12px",
+                    marginBottom: "16px",
+                    borderRadius: "8px",
                   }}
-                >
-                  Let's Collaborate
-                </Button>
-              </Flex>
-            </form>
-          </Flex>
+                />
+                {errors.name && (
+                  <span className="inline-block self-start text-accent">
+                    {errors.name.message}
+                  </span>
+                )}
+              </>
+
+              {/* Email Input */}
+              <motion.input
+                variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+                type="email"
+                placeholder="email"
+                {...register("email", {
+                  required: "This field is required!",
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: "Please enter a valid email.",
+                  },
+                })}
+                className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+                style={{
+                  backgroundColor: inputBgColor[colorMode],
+                  color: inputTextColor[colorMode],
+                  padding: "12px",
+                  marginBottom: "16px",
+                  borderRadius: "8px",
+                }}
+              />
+              {errors.email && (
+                <span className="inline-block self-start text-accent">
+                  {errors.email.message}
+                </span>
+              )}
+
+              {/* Message Input */}
+              <motion.textarea
+                variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+                placeholder="message"
+                rows={6}
+                {...register("message", {
+                  required: "This field is required!",
+                })}
+                className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+                style={{
+                  backgroundColor: inputBgColor[colorMode],
+                  color: inputTextColor[colorMode],
+                  padding: "12px",
+                  marginBottom: "16px",
+                  borderRadius: "8px",
+                }}
+              />
+              {errors.message && (
+                <span className="inline-block self-start text-accent">
+                  {errors.message.message}
+                </span>
+              )}
+
+              {/* Submit Button */}
+              <motion.button
+                variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+                type="submit"
+                className="bg-primary text-background px-4 py-2 rounded-md hover:opacity-90 transition-opacity"
+                style={{
+                  backgroundColor: "transparent", // Transparent background for "outline" effect
+                  color: "#D53F8C", // Pink color for text and border
+                  width: "250px",
+                  display: "block", // Ensure it's block-level
+                  margin: "0 auto",
+                  padding: "8px 24px", // Adjust padding to make the button smaller
+                  border: "2px solid #D53F8C", // Pink border
+                  borderRadius: "8px", // Keep the rounded corners
+                  fontFamily: "Baskerville Old Face", // Font style as before
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#D53F8C"; // Pink background on hover
+                  e.currentTarget.style.color = "white"; // White text on hover
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent"; // Transparent background when hover ends
+                  e.currentTarget.style.color = "#D53F8C"; // Pink text when hover ends
+                }}
+              >
+                Let's Collaborate
+              </motion.button>
+            </Flex>
+          </motion.form>
+
+          {/* New form functionality added here */}
+          {/* <Toaster richColors={true} />
+          <motion.form
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: { staggerChildren: 0.3, delayChildren: 0.2 },
+              },
+            }}
+            initial="hidden"
+            animate="show"
+            onSubmit={handleSubmit(onSubmit)}
+            className="max-w-md w-full flex flex-col items-center justify-center space-y-4"
+          >
+            <motion.input
+              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+              type="text"
+              placeholder="name"
+              {...register("name", {
+                required: "This field is required!",
+                minLength: {
+                  value: 3,
+                  message: "Name should be at least 3 characters long.",
+                },
+              })}
+              className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+            />
+            {errors.name && (
+              <span className="inline-block self-start text-accent">
+                {errors.name.message}
+              </span>
+            )}
+            <motion.input
+              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+              type="email"
+              placeholder="email"
+              {...register("email", {
+                required: "This field is required!",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Please enter a valid email.",
+                },
+              })}
+              className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+            />
+            {errors.email && (
+              <span className="inline-block self-start text-accent">
+                {errors.email.message}
+              </span>
+            )}
+            <motion.textarea
+              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+              placeholder="message"
+              rows={6}
+              {...register("message", { required: "This field is required!" })}
+              className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
+            />
+            {errors.message && (
+              <span className="inline-block self-start text-accent">
+                {errors.message.message}
+              </span>
+            )}
+            <motion.button
+              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
+              type="submit"
+              className="bg-primary text-background px-4 py-2 rounded-md hover:opacity-90 transition-opacity"
+            >
+              Send
+            </motion.button>
+          </motion.form> */}
         </Flex>
       </Container>
     </Box>
