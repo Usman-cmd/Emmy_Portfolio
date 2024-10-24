@@ -40,11 +40,6 @@ const Contact = () => {
   const inputBgColor = { light: "#e2e8f0", dark: "#ccd6f6" };
   const inputTextColor = { light: "black", dark: "black" };
 
-  //dotenv.config();
-
-  //require("dotenv").config();
-
-  // Form functionality from the previous code
   const {
     register,
     handleSubmit,
@@ -215,8 +210,6 @@ const Contact = () => {
             initial="hidden"
             animate="show"
             onSubmit={handleSubmit(onSubmit)}
-            //method="POST"
-            //action="https://getform.io/f/95a395b5-e421-4da9-bde7-0ea7717032ca"
             style={{ width: "100%" }} // Keeping the existing design's full width
           >
             <Flex flexDir="column" w="full" maxW="600px" mx="auto">
@@ -335,78 +328,6 @@ const Contact = () => {
               </motion.button>
             </Flex>
           </motion.form>
-
-          {/* New form functionality added here */}
-          {/* <Toaster richColors={true} />
-          <motion.form
-            variants={{
-              hidden: { opacity: 0 },
-              show: {
-                opacity: 1,
-                transition: { staggerChildren: 0.3, delayChildren: 0.2 },
-              },
-            }}
-            initial="hidden"
-            animate="show"
-            onSubmit={handleSubmit(onSubmit)}
-            className="max-w-md w-full flex flex-col items-center justify-center space-y-4"
-          >
-            <motion.input
-              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
-              type="text"
-              placeholder="name"
-              {...register("name", {
-                required: "This field is required!",
-                minLength: {
-                  value: 3,
-                  message: "Name should be at least 3 characters long.",
-                },
-              })}
-              className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
-            />
-            {errors.name && (
-              <span className="inline-block self-start text-accent">
-                {errors.name.message}
-              </span>
-            )}
-            <motion.input
-              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
-              type="email"
-              placeholder="email"
-              {...register("email", {
-                required: "This field is required!",
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: "Please enter a valid email.",
-                },
-              })}
-              className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
-            />
-            {errors.email && (
-              <span className="inline-block self-start text-accent">
-                {errors.email.message}
-              </span>
-            )}
-            <motion.textarea
-              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
-              placeholder="message"
-              rows={6}
-              {...register("message", { required: "This field is required!" })}
-              className="w-full p-2 rounded-md shadow-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 custom-bg"
-            />
-            {errors.message && (
-              <span className="inline-block self-start text-accent">
-                {errors.message.message}
-              </span>
-            )}
-            <motion.button
-              variants={{ hidden: { scale: 0 }, show: { scale: 1 } }}
-              type="submit"
-              className="bg-primary text-background px-4 py-2 rounded-md hover:opacity-90 transition-opacity"
-            >
-              Send
-            </motion.button>
-          </motion.form> */}
         </Flex>
       </Container>
     </Box>
